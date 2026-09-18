@@ -1,119 +1,125 @@
 # VSCode Immersive Translate Plugin
 
-A VS Code extension for code/text translation with both slide view and immersive inline view.
+Translate code or text in VS Code / Cursor — inline (Immersive) or side panel (Slide), with concurrent multi-line translation.
+
+**Repository:** [hejian991/immersive-translate-vscode-plugin](https://github.com/hejian991/immersive-translate-vscode-plugin)
+**License:** MIT · **Version:** 0.0.7 · **Publisher:** `hejian991`
 
 ## Features
 
-- Multiple providers:
-  - `google-free` (default)
-  - `bing-free`
-  - `google` (paid API)
-  - `bing` (paid API)
-  - `openai`
-  - `gemini`
-  - `deepseek`
-- Source/target language configuration (default: `en` -> `zh-CN`)
-- Three translation views:
-  - Side-by-side slide view (interleaved original/translation, progressive line-by-line)
-  - Side-by-side slide view (Only Target, full translated text only)
-  - Immersive inline view in editor
+- **Providers:** `google-free` (default), `bing-free`, `google`, `bing`, `openai`, `gemini`, `deepseek`
+- **Languages:** configurable source / target (default `en` → `zh-CN`)
+- **Concurrent multi-line translation** (`concurrency`, default `5`) for Immersive and Slide
+- **Three views:**
+  - **Slide** — interleaved original + translation (with line-number gutter); opens beside the editor
+  - **Slide (Only Target)** — full translated text only
+  - **Immersive** — green italic inline decorations in the editor (`#6A9955`)
+- **Per-file Translation panels** — each source file gets its own tab (`Translation: <filename>`); translating another file does not overwrite previous results
+- **Shortcut** for Slide: macOS `Ctrl+Cmd+T` · Windows/Linux `Ctrl+Alt+T` (requires editor focus)
 
-### Feature Overview
-**command list**
+### Screenshots
+
+**Commands**
+
 ![command list](./images/commands.png)
 
-**translate in-line**
+**Immersive (inline)**
+
 ![view inline](./images/inline.png)
 
-**translate in slide**
+**Slide (interleaved)**
+
 ![view in slide](./images/slide.png)
 
-**translate in slide only target**
+**Slide (only target)**
+
 ![view in slide only target](./images/slide-only-target.png)
 
-**configuration**
+**Configuration**
+
 ![configuration](./images/config.png)
 
 ## Commands
 
-Open Command Palette and run:
+Command Palette:
 
-- `Immersive Translate: View Translate to the Slide`
-- `Immersive Translate: View Translate to the Slide (Only Target)`
-- `Immersive Translate: View Translate Immersive`
-- `Immersive Translate: Close Translate Immersive`
+| Command | Description |
+|---------|-------------|
+| `Immersive Translate: View Translate to the Slide` | Interleaved Slide panel beside the editor |
+| `Immersive Translate: View Translate to the Slide (Only Target)` | Translation-only panel |
+| `Immersive Translate: View Translate Immersive` | Inline decorations (up to 50 lines) |
+| `Immersive Translate: Close Translate Immersive` | Clear inline decorations |
 
 ## Settings
 
-Search in VS Code settings:
+| Setting | Default | Notes |
+|---------|---------|--------|
+| `vscode-immersive-translate-plugin.apiProvider` | `google-free` | See provider list above |
+| `vscode-immersive-translate-plugin.apiKey` | `""` | Required for OpenAI / Gemini / DeepSeek / paid Google & Bing |
+| `vscode-immersive-translate-plugin.sourceLanguage` | `en` | e.g. `en`, `auto` |
+| `vscode-immersive-translate-plugin.targetLanguage` | `zh-CN` | e.g. `zh-CN`, `en` |
+| `vscode-immersive-translate-plugin.concurrency` | `5` | Lines per concurrent batch (1–20) |
 
-- `vscode-immersive-translate-plugin.apiProvider`
-- `vscode-immersive-translate-plugin.apiKey`
-- `vscode-immersive-translate-plugin.sourceLanguage`
-- `vscode-immersive-translate-plugin.targetLanguage`
+### API key notes
 
-### Notes on API Key
-
-- `google-free` and `bing-free` can be used without API key.
-- `openai`, `gemini`, and `deepseek` require API key.
-- Paid `google`/`bing` modes require valid cloud API configuration.
+- `google-free` / `bing-free`: no API key
+- `openai` / `gemini` / `deepseek`: API key required
+- Paid `google` / `bing`: valid cloud credentials required
 
 ## Usage
 
-1. Open a file in VS Code.
-2. Set provider/language in Settings.
-3. Run one of the translation commands.
+1. Open a file in VS Code or Cursor.
+2. Configure provider / languages / concurrency in Settings.
+3. Run a translation command (or use the Slide shortcut).
+4. For multiple files: each Slide run keeps a separate `Translation: <file>` tab; re-translating the same file updates that tab only.
 
-## Build
+## Concurrent translation
+
+Immersive and Slide translate in batches of `concurrency`:
+
+- **LLM** (OpenAI / DeepSeek): numbered `[N]` batch request first; on failure, `Promise.all` singles
+- **Free providers:** `Promise.all` per batch
+- Slide batches use a flat work list (`chunkArray`), so blank lines do not break concurrency
+
+Ideas ported from [immersive-translate-code](https://github.com/hejian991/immersive-translate-code).
+
+## Install
+
+### From VSIX (recommended)
+
+1. Download a `.vsix` from [Releases](https://github.com/hejian991/immersive-translate-vscode-plugin/releases) (or build locally).
+2. Extensions → `...` → **Install from VSIX...**, or:
+
+```bash
+cursor --install-extension immersive-translate-vscode-plugin-0.0.7.vsix
+# or: code --install-extension path/to/vscode-immersive-translate-plugin-0.0.7.vsix
+```
+
+3. Run **Developer: Reload Window**.
+
+### Build & package locally
 
 ```bash
 npm install
 npm run compile
-```
-
-## Package
-
-```bash
-npx @vscode/vsce package
-```
-
-
-## Concurrent translation (v0.0.2+)
-
-Immersive and Slide modes translate multiple lines concurrently:
-
-- Setting: `vscode-immersive-translate-plugin.concurrency` (default `5`)
-- LLM providers (OpenAI / DeepSeek): numbered `[N]` batch request, fallback to `Promise.all`
-- Free providers: concurrent `Promise.all` per batch
-
-Ported from [immersive-translate-code](https://github.com/hejian991/immersive-translate-code) orchestrator ideas.
-
-## Install from VSIX (GitHub Release)
-
-1. Download the `.vsix` from [Releases](https://github.com/hejian991/vscode-immersive-translate-plugin/releases)
-2. In VS Code / Cursor: Extensions → `...` → **Install from VSIX...**
-3. Or CLI:
-
-```bash
-cursor --install-extension vscode-immersive-translate-plugin-0.0.2.vsix
-# or: code --install-extension vscode-immersive-translate-plugin-0.0.2.vsix
-```
-
-## Package locally
-
-```bash
-npm install
-npm run compile
-npm run package
+npm run package   # → vscode-immersive-translate-plugin-0.0.7.vsix
 ```
 
 ## Troubleshooting
 
-If Command Palette shows Immersive Translate commands but running them says `command ... not found`, the extension failed to activate. v0.0.3+ packages `axios` into the VSIX and sets explicit `activationEvents`. Reload the window after install (`Developer: Reload Window`).
+If Command Palette lists Immersive Translate commands but running them says `command ... not found`, the extension did not activate. **v0.0.3+** packages `axios` into the VSIX and sets explicit `activationEvents`. Reload the window after install.
 
-## Keyboard shortcut
+## Changelog (highlights)
 
-- **macOS**: `Ctrl+Cmd+T` — `Immersive Translate: View Translate to the Slide`
-- **Windows/Linux**: `Ctrl+Alt+T`
+| Version | Changes |
+|---------|---------|
+| **0.0.7** | Refresh README and publish metadata |
+| **0.0.6** | Per-file Translation panels (`Translation: <filename>`); MIT license; repo moved to `immersive-translate-vscode-plugin` |
+| **0.0.5** | Slide line-number gutter; `Ctrl+Cmd+T` / `Ctrl+Alt+T` shortcut |
+| **0.0.4** | Fix Slide concurrency when documents contain blank lines |
+| **0.0.3** | Package `axios`; fix activation / “command not found” |
+| **0.0.2** | Concurrent multi-line translation + `concurrency` setting |
 
-Requires editor focus (`editorTextFocus`).
+## License
+
+[MIT](./LICENSE)
