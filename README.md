@@ -3,7 +3,7 @@
 Translate code or text in VS Code / Cursor — inline (Immersive) or side panel (Slide), with concurrent multi-line translation.
 
 **Repository:** [hejian991/immersive-translate-vscode-plugin](https://github.com/hejian991/immersive-translate-vscode-plugin)  
-**License:** MIT · **Version:** 0.1.0 · **Publisher:** `hejian991`  
+**License:** MIT · **Version:** 0.1.1 · **Publisher:** `hejian991`
 **Extension ID:** `hejian991.immersive-translate-vscode-plugin`
 
 > Marketplace `name` must be globally unique. The older name `vscode-immersive-translate-plugin` is already taken by another publisher (`chengjingtao`), so this extension uses `immersive-translate-vscode-plugin`.
@@ -90,7 +90,7 @@ Ideas ported from [immersive-translate-code](https://github.com/hejian991/immers
 
 ### VS Marketplace / VS Code
 
-Search: `immersive-translate-vscode-plugin` or `VSCode Immersive Translate Plugin`  
+Search: `immersive-translate-vscode-plugin` or `Immersive Translate for VS Code (hejian991)`
 ID: `hejian991.immersive-translate-vscode-plugin`
 
 ### Open VSX / Cursor
@@ -100,8 +100,8 @@ Cursor’s panel often uses Open VSX. Search the same name / ID after it is publ
 ### From VSIX
 
 ```bash
-cursor --install-extension immersive-translate-vscode-plugin-0.1.0.vsix
-# or: code --install-extension path/to/immersive-translate-vscode-plugin-0.1.0.vsix
+cursor --install-extension immersive-translate-vscode-plugin-0.1.1.vsix
+# or: code --install-extension path/to/immersive-translate-vscode-plugin-0.1.1.vsix
 ```
 
 Then **Developer: Reload Window**.
@@ -111,7 +111,7 @@ Then **Developer: Reload Window**.
 ```bash
 npm install
 npm run compile
-npm run package   # → immersive-translate-vscode-plugin-0.1.0.vsix
+npm run package   # → immersive-translate-vscode-plugin-0.1.1.vsix
 ```
 
 ### Publish
@@ -120,10 +120,10 @@ npm run package   # → immersive-translate-vscode-plugin-0.1.0.vsix
 # VS Marketplace (Azure DevOps Marketplace PAT with Marketplace → Manage)
 vsce login hejian991
 vsce publish
-# or: vsce publish --packagePath immersive-translate-vscode-plugin-0.1.0.vsix -p "$VSCE_PAT"
+# or: vsce publish --packagePath immersive-translate-vscode-plugin-0.1.1.vsix -p "$VSCE_PAT"
 
 # Open VSX (optional, for Cursor search)
-npx ovsx publish immersive-translate-vscode-plugin-0.1.0.vsix -p "$OVSX_PAT"
+npx ovsx publish immersive-translate-vscode-plugin-0.1.1.vsix -p "$OVSX_PAT"
 ```
 
 ## Troubleshooting
@@ -136,6 +136,7 @@ If Marketplace says **`vscode-immersive-translate-plugin` already exists**, that
 
 | Version | Changes |
 |---------|---------|
+| **0.1.1** | Marketplace display name updated to `Immersive Translate for VS Code (hejian991)` to avoid a global title collision. |
 | **0.1.0** | Marketplace ID → `immersive-translate-vscode-plugin` (old name taken by `chengjingtao`) |
 | **0.0.9** | Updated extension icon (pink 文/A) |
 | **0.0.8** | Open VSX docs / ID notes |
