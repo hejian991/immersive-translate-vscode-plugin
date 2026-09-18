@@ -1,9 +1,9 @@
 {
-  "name": "vscode-immersive-translate-plugin",
+  "name": "immersive-translate-vscode-plugin",
   "displayName": "VSCode Immersive Translate Plugin",
   "icon": "assets/icon.png",
   "description": "Translate text using Google, Bing, OpenAI, Gemini, or DeepSeek — inline or slide view, with concurrent multi-line translation.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "publisher": "hejian991",
   "license": "MIT",
   "repository": {

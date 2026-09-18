@@ -3,7 +3,7 @@
 Translate code or text in VS Code / Cursor — inline (Immersive) or side panel (Slide), with concurrent multi-line translation.
 
 **Repository:** [hejian991/immersive-translate-vscode-plugin](https://github.com/hejian991/immersive-translate-vscode-plugin)
-**License:** MIT · **Version:** 0.0.7 · **Publisher:** `hejian991`
+**License:** MIT · **Version:** 0.0.8 · **Publisher:** `hejian991`
 
 ## Features
 
@@ -91,8 +91,8 @@ Ideas ported from [immersive-translate-code](https://github.com/hejian991/immers
 2. Extensions → `...` → **Install from VSIX...**, or:
 
 ```bash
-cursor --install-extension immersive-translate-vscode-plugin-0.0.7.vsix
-# or: code --install-extension path/to/vscode-immersive-translate-plugin-0.0.7.vsix
+cursor --install-extension immersive-translate-vscode-plugin-0.0.8.vsix
+# or: code --install-extension path/to/immersive-translate-vscode-plugin-0.0.8.vsix
 ```
 
 3. Run **Developer: Reload Window**.
@@ -102,7 +102,7 @@ cursor --install-extension immersive-translate-vscode-plugin-0.0.7.vsix
 ```bash
 npm install
 npm run compile
-npm run package   # → vscode-immersive-translate-plugin-0.0.7.vsix
+npm run package   # → immersive-translate-vscode-plugin-0.0.8.vsix
 ```
 
 ## Troubleshooting
@@ -113,6 +113,7 @@ If Command Palette lists Immersive Translate commands but running them says `com
 
 | Version | Changes |
 |---------|---------|
+| **0.0.8** | Rename the Marketplace extension identifier to `immersive-translate-vscode-plugin` |
 | **0.0.7** | Refresh README and publish metadata |
 | **0.0.6** | Per-file Translation panels (`Translation: <filename>`); MIT license; repo moved to `immersive-translate-vscode-plugin` |
 | **0.0.5** | Slide line-number gutter; `Ctrl+Cmd+T` / `Ctrl+Alt+T` shortcut |
