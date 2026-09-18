@@ -3,7 +3,7 @@
 Translate code or text in VS Code / Cursor — inline (Immersive) or side panel (Slide), with concurrent multi-line translation.
 
 **Repository:** [hejian991/immersive-translate-vscode-plugin](https://github.com/hejian991/immersive-translate-vscode-plugin)  
-**License:** MIT · **Version:** 0.0.8 · **Publisher:** `hejian991`  
+**License:** MIT · **Version:** 0.0.9 · **Publisher:** `hejian991`  
 **Extension ID:** `hejian991.vscode-immersive-translate-plugin` (Marketplace / Open VSX)
 
 ## Features
@@ -102,8 +102,8 @@ Cursor’s extension search uses **Open VSX** (not VS Marketplace by default). S
 2. Extensions → `...` → **Install from VSIX...**, or:
 
 ```bash
-cursor --install-extension vscode-immersive-translate-plugin-0.0.8.vsix
-# or: code --install-extension path/to/vscode-immersive-translate-plugin-0.0.8.vsix
+cursor --install-extension vscode-immersive-translate-plugin-0.0.9.vsix
+# or: code --install-extension path/to/vscode-immersive-translate-plugin-0.0.9.vsix
 ```
 
 3. Run **Developer: Reload Window**.
@@ -113,18 +113,18 @@ cursor --install-extension vscode-immersive-translate-plugin-0.0.8.vsix
 ```bash
 npm install
 npm run compile
-npm run package   # → vscode-immersive-translate-plugin-0.0.8.vsix
+npm run package   # → vscode-immersive-translate-plugin-0.0.9.vsix
 ```
 
 ### Publish
 
 ```bash
 # Open VSX (what Cursor searches)
-npx ovsx publish vscode-immersive-translate-plugin-0.0.8.vsix -p "$OVSX_PAT"
+npx ovsx publish vscode-immersive-translate-plugin-0.0.9.vsix -p "$OVSX_PAT"
 
 # VS Marketplace (needs Azure DevOps Marketplace PAT + vsce login)
 vsce publish
-# or: vsce publish --packagePath vscode-immersive-translate-plugin-0.0.8.vsix
+# or: vsce publish --packagePath vscode-immersive-translate-plugin-0.0.9.vsix
 ```
 
 ## Troubleshooting
@@ -134,13 +134,15 @@ If Command Palette lists Immersive Translate commands but running them says `com
 If publish says the extension **already exists**, you are usually:
 
 1. republishing an **existing version** (bump `version` in `package.json`), or  
-2. accidentally creating a **new** `publisher.name` by renaming `package.json` `name` — keep `name` as `vscode-immersive-translate-plugin` and only bump the version.
+2. accidentally creating a **new** `publisher.name` by renaming `package.json` `name` — keep `name` as `vscode-immersive-translate-plugin` and only bump the version.  
+3. On Open VSX, a version can be **published but inactive** (not searchable). Bump the version and publish again; or wait for namespace/version activation.
 
 ## Changelog (highlights)
 
 | Version | Changes |
 |---------|---------|
-| **0.0.8** | Keep stable extension ID `vscode-immersive-translate-plugin`; docs for Open VSX vs GitHub repo name |
+| **0.0.9** | Updated extension icon (pink 文/A) |
+| **0.0.8** | Stable ID docs; Open VSX publish of 0.0.8 stayed inactive — superseded by 0.0.9 |
 | **0.0.7** | Refresh README and publish metadata |
 | **0.0.6** | Per-file Translation panels (`Translation: <filename>`); MIT license; GitHub repo `immersive-translate-vscode-plugin` |
 | **0.0.5** | Slide line-number gutter; `Ctrl+Cmd+T` / `Ctrl+Alt+T` shortcut |
