@@ -1,5 +1,5 @@
 {
-  "name": "immersive-translate-vscode-plugin",
+  "name": "vscode-immersive-translate-plugin",
   "displayName": "VSCode Immersive Translate Plugin",
   "icon": "assets/icon.png",
   "description": "Translate text using Google, Bing, OpenAI, Gemini, or DeepSeek — inline or slide view, with concurrent multi-line translation.",

@@ -2,8 +2,9 @@
 
 Translate code or text in VS Code / Cursor — inline (Immersive) or side panel (Slide), with concurrent multi-line translation.
 
-**Repository:** [hejian991/immersive-translate-vscode-plugin](https://github.com/hejian991/immersive-translate-vscode-plugin)
-**License:** MIT · **Version:** 0.0.8 · **Publisher:** `hejian991`
+**Repository:** [hejian991/immersive-translate-vscode-plugin](https://github.com/hejian991/immersive-translate-vscode-plugin)  
+**License:** MIT · **Version:** 0.0.8 · **Publisher:** `hejian991`  
+**Extension ID:** `hejian991.vscode-immersive-translate-plugin` (Marketplace / Open VSX)
 
 ## Features
 
@@ -85,14 +86,24 @@ Ideas ported from [immersive-translate-code](https://github.com/hejian991/immers
 
 ## Install
 
-### From VSIX (recommended)
+### From Open VSX / Cursor Extensions panel
+
+Cursor’s extension search uses **Open VSX** (not VS Marketplace by default). Search for:
+
+- `vscode-immersive-translate-plugin`, or  
+- `VSCode Immersive Translate Plugin`, or  
+- full ID `hejian991.vscode-immersive-translate-plugin`
+
+> Do **not** search by the GitHub repo name `immersive-translate-vscode-plugin` alone — that is the **repository** name. The Marketplace/`package.json` **`name`** (extension ID suffix) is `vscode-immersive-translate-plugin` and must stay stable once published.
+
+### From VSIX
 
 1. Download a `.vsix` from [Releases](https://github.com/hejian991/immersive-translate-vscode-plugin/releases) (or build locally).
 2. Extensions → `...` → **Install from VSIX...**, or:
 
 ```bash
-cursor --install-extension immersive-translate-vscode-plugin-0.0.8.vsix
-# or: code --install-extension path/to/immersive-translate-vscode-plugin-0.0.8.vsix
+cursor --install-extension vscode-immersive-translate-plugin-0.0.8.vsix
+# or: code --install-extension path/to/vscode-immersive-translate-plugin-0.0.8.vsix
 ```
 
 3. Run **Developer: Reload Window**.
@@ -102,20 +113,36 @@ cursor --install-extension immersive-translate-vscode-plugin-0.0.8.vsix
 ```bash
 npm install
 npm run compile
-npm run package   # → immersive-translate-vscode-plugin-0.0.8.vsix
+npm run package   # → vscode-immersive-translate-plugin-0.0.8.vsix
+```
+
+### Publish
+
+```bash
+# Open VSX (what Cursor searches)
+npx ovsx publish vscode-immersive-translate-plugin-0.0.8.vsix -p "$OVSX_PAT"
+
+# VS Marketplace (needs Azure DevOps Marketplace PAT + vsce login)
+vsce publish
+# or: vsce publish --packagePath vscode-immersive-translate-plugin-0.0.8.vsix
 ```
 
 ## Troubleshooting
 
 If Command Palette lists Immersive Translate commands but running them says `command ... not found`, the extension did not activate. **v0.0.3+** packages `axios` into the VSIX and sets explicit `activationEvents`. Reload the window after install.
 
+If publish says the extension **already exists**, you are usually:
+
+1. republishing an **existing version** (bump `version` in `package.json`), or  
+2. accidentally creating a **new** `publisher.name` by renaming `package.json` `name` — keep `name` as `vscode-immersive-translate-plugin` and only bump the version.
+
 ## Changelog (highlights)
 
 | Version | Changes |
 |---------|---------|
-| **0.0.8** | Rename the Marketplace extension identifier to `immersive-translate-vscode-plugin` |
+| **0.0.8** | Keep stable extension ID `vscode-immersive-translate-plugin`; docs for Open VSX vs GitHub repo name |
 | **0.0.7** | Refresh README and publish metadata |
-| **0.0.6** | Per-file Translation panels (`Translation: <filename>`); MIT license; repo moved to `immersive-translate-vscode-plugin` |
+| **0.0.6** | Per-file Translation panels (`Translation: <filename>`); MIT license; GitHub repo `immersive-translate-vscode-plugin` |
 | **0.0.5** | Slide line-number gutter; `Ctrl+Cmd+T` / `Ctrl+Alt+T` shortcut |
 | **0.0.4** | Fix Slide concurrency when documents contain blank lines |
 | **0.0.3** | Package `axios`; fix activation / “command not found” |
