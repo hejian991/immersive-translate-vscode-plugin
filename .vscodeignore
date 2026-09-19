@@ -9,3 +9,4 @@ test.png
 **/*.map
 package-lock.json
 *.vsix
+README.maintainer.md
