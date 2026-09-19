@@ -84,8 +84,8 @@ Cursor’s panel often uses Open VSX. Search the same name / ID after it is publ
 ### From VSIX
 
 ```bash
-cursor --install-extension immersive-translate-vscode-plugin-0.1.1.vsix
-# or: code --install-extension path/to/immersive-translate-vscode-plugin-0.1.1.vsix
+cursor --install-extension immersive-translate-vscode-plugin-0.1.2.vsix
+# or: code --install-extension path/to/immersive-translate-vscode-plugin-0.1.2.vsix
 ```
 
 Then **Developer: Reload Window**.
@@ -96,18 +96,6 @@ Then **Developer: Reload Window**.
 npm install
 npm run compile
 npm run package
-```
-
-### Publish
-
-```bash
-# VS Marketplace (Azure DevOps Marketplace PAT with Marketplace → Manage)
-vsce login hejian991
-vsce publish
-# or: vsce publish --packagePath immersive-translate-vscode-plugin-0.1.1.vsix -p "$VSCE_PAT"
-
-# Open VSX (optional, for Cursor search)
-npx ovsx publish immersive-translate-vscode-plugin-0.1.1.vsix -p "$OVSX_PAT"
 ```
 
 ## License

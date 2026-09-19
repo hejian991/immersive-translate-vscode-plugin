@@ -3,7 +3,7 @@
   "displayName": "Immersive Translate for VS Code",
   "icon": "assets/icon.png",
   "description": "Translate text using Google, Bing, OpenAI, Gemini, or DeepSeek — inline or slide view, with concurrent multi-line translation.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "hejian991",
   "license": "MIT",
   "repository": {
